@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Surprise</title>
+    <title>Valentine's Surprise 💖</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -20,6 +19,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -47,7 +47,8 @@
             bottom: -50px;
             color: var(--primary);
             opacity: 0.6;
-            animation: float linear infinite;
+            animation: float linear forwards;
+            user-select: none;
         }
 
         @keyframes float {
@@ -66,59 +67,60 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
             padding: 2.5rem;
-            border-radius: 2rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 50px rgba(225, 29, 72, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             text-align: center;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-origin: center;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .screen {
             display: none;
-            animation: slideIn 0.5s ease-out forwards;
+            animation: fadeInScale 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
         .screen.active {
             display: block;
         }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.8) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         h2 {
             color: var(--primary-dark);
             font-size: 1.8rem;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             line-height: 1.4;
+            font-weight: 600;
         }
 
         button {
             background: var(--primary);
             color: white;
             border: none;
-            padding: 0.8rem 2.5rem;
-            font-size: 1rem;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 10px 20px rgba(251, 113, 133, 0.3);
+            outline: none;
         }
 
         button:hover {
             background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 15px 25px rgba(251, 113, 133, 0.4);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(251, 113, 133, 0.4);
         }
 
         button:active {
-            transform: translateY(0);
+            transform: translateY(0) scale(0.95);
         }
 
         .final-message {
@@ -127,9 +129,12 @@
             line-height: 1.6;
             color: #4c0519;
             white-space: pre-line;
-            max-height: 70vh;
+            max-height: 60vh;
             overflow-y: auto;
-            padding-right: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 1.5rem;
+            border: 1px dashed var(--primary);
         }
 
         .final-message::-webkit-scrollbar {
@@ -141,9 +146,15 @@
         }
 
         .emoji-header {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
             display: block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
     </style>
 </head>
@@ -152,38 +163,38 @@
 
     <div class="container">
         <div class="card">
-            <!-- Step 1 -->
-            <div id="step-0" class="screen active">
+            <!-- Screen 1 -->
+            <div id="screen-0" class="screen active">
                 <h2>Hi bebi 👀</h2>
                 <button onclick="nextStep(1)">Next</button>
             </div>
 
-            <!-- Step 2 -->
-            <div id="step-1" class="screen">
+            <!-- Screen 2 -->
+            <div id="screen-1" class="screen">
                 <h2>May surprise ako...</h2>
                 <button onclick="nextStep(2)">Next</button>
             </div>
 
-            <!-- Step 3 -->
-            <div id="step-2" class="screen">
+            <!-- Screen 3 -->
+            <div id="screen-2" class="screen">
                 <h2>Sure ka na?</h2>
                 <button onclick="nextStep(3)">Oo naman!</button>
             </div>
 
-            <!-- Step 4 -->
-            <div id="step-3" class="screen">
+            <!-- Screen 4 -->
+            <div id="screen-3" class="screen">
                 <h2>Last chance HAHA</h2>
                 <button onclick="nextStep(4)">TULOY NA!</button>
             </div>
 
-            <!-- Step 5 -->
-            <div id="step-4" class="screen">
+            <!-- Screen 5 -->
+            <div id="screen-4" class="screen">
                 <h2>Okay ready na??</h2>
                 <button onclick="nextStep(5)">Reveal 💖</button>
             </div>
 
             <!-- Final Screen -->
-            <div id="step-5" class="screen">
+            <div id="screen-5" class="screen">
                 <span class="emoji-header">💌</span>
                 <div class="final-message">hi bebie,
 
@@ -198,6 +209,52 @@ louis lablab bebie dada dadamove dadabank dadapatrol dadabee dadaking</div>
         </div>
     </div>
 
-    <script type="module" src="index.tsx"></script>
+    <script>
+        // Global navigation function
+        function nextStep(step) {
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(s => s.classList.remove('active'));
+            
+            const next = document.getElementById(`screen-${step}`);
+            if (next) {
+                next.classList.add('active');
+            }
+        }
+
+        // Heart animation logic
+        function createHeart() {
+            const container = document.getElementById('heart-container');
+            if (!container) return;
+
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤';
+            
+            const size = Math.random() * 20 + 10;
+            const left = Math.random() * 100;
+            const duration = Math.random() * 4 + 4;
+            const delay = Math.random() * 2;
+
+            heart.style.fontSize = `${size}px`;
+            heart.style.left = `${left}%`;
+            heart.style.animationDuration = `${duration}s`;
+            heart.style.animationDelay = `${delay}s`;
+            
+            container.appendChild(heart);
+
+            // Cleanup
+            setTimeout(() => {
+                heart.remove();
+            }, (duration + delay) * 1000);
+        }
+
+        // Background music can be added here if desired
+
+        // Initial burst and continuous hearts
+        setInterval(createHeart, 500);
+        for(let i = 0; i < 15; i++) {
+            setTimeout(createHeart, Math.random() * 3000);
+        }
+    </script>
 </body>
 </html>
